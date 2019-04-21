@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Great Number</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+    <style>
+        .wrong {
+            width: 300px;
+            height: 300px;
+            background-color: maroon;
+            color: aliceblue;
+            text-align: center;
+            margin:  auto;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+            } 
+    </style>
+</head>
+<body>
+<div class="container">
+
+        <h1>Welcome to the Great Number Game!</h1>
+        <p>I am thinking of a number between 1 and 100</p>
+        <p>Take a guess!</p>
+        <p>Number of attempts: {{session["visits"]}}</p>
+        <h2 class=wrong>{{session["message"]}}</h2>
+        <form action='/process' method='post'>
+            <input type='text' name='guess'>
+            <input type='submit' value='Submit'>
+        </form>
+        <form action='/reset' method='post'>
+            <input type='submit' value='Reset'>
+        </form>
+
+    </div>
+</body>
+</html>

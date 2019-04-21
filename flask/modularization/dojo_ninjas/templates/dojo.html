@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Users_Home</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+</head>
+<body>
+    <div class="add">
+        <form action="/add_dojo" class="inline-form" method="POST"> 
+            <h2>Add Dojo</h2>
+            <p>Name <input type="text" name="name" id="name"></p>
+            <p>City <input type="text" name="city" id="city"></p>
+            <p>State <input type="text" name="state" id="state"></p>
+            <input type="submit" name="add_dojo" value="Add">
+        </form>
+        <form action="/add_ninja" class="inline-form" method="POST"> 
+            <h2>Add Ninja</h2>
+            <p>First Name <input type="text" name="first_name" id="first_name"></p>
+            <p>Last Name <input type="text" name="last_name" id="last_name"></p>
+            <p> <select name='dojo_name' class="form-inline">
+                    {% for dojo in dojos %}
+                        <option value="" selected disabled hidden>Choose Dojo</option>
+                        <option name="{{ i }}">{{ dojo["name"] }}</option>
+                    {% endfor %}
+                </select></p>
+            <input type="submit" name="add_ninja" value="Add">
+        </form>
+       
+    </div>
+    <h1>All Dojos and Ninjas</h1>
+    <table class="table table-striped table-bordered">
+    
+    {%for dojos, student in students.items()%}
+   
+   <h4>{{dojos["name"]}}</h4>
+   {%for i in student%}
+   <p>* {{i["first_name"]}} {{i["last_name"]}}</p>
+    {% endfor %}
+    {% endfor %}
+ 
+    
+</table>
+
+</body>
+</html>

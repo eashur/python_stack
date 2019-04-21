@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Edit</h1>
+    {% with messages = get_flashed_messages() %}     <!-- declare a variable called messages -->
+    {% if messages %}                            <!-- check if there are any messages -->
+        {% for message in messages %}            <!-- loop through the messages -->
+            <p>{{message}}</p>                   <!-- display each message in a paragraph tag -->
+        {% endfor %}
+    {% endif %}
+{% endwith %} 
+<form action="/edit" method = "POST">
+<input type="text" placeholder="{{result[0]['tweet']}}" name="utext">
+<input type="hidden" name="which_tweet" value="{{result[0]['id']}}">
+<input type="submit" value="Update" > 
+</form>
+<form action="/cancel_edit" method = "POST">
+<input type="submit" value="Cancel" > 
+</form>
+</body>
+</html>

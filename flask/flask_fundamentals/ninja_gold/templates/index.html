@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ninja Money</title>
+    <link rel="stylesheet" href="{{url_for('static', filename = 'css/bootstrap.css')}}">
+<style>
+.lost{
+    color: red;
+}
+
+</style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome ot Ninja Money!!!</h1>
+        <h3>You have 15 tries to make 300 golds!!!</h3>
+        <div class="your_gold">
+            <p>Your Golds:</p>
+            <p class="gold_count">{{session['gold']}}</p>
+        </div>
+        <div class="flex-container">
+            <div class="locations">
+                <h1>Farm</h1>
+                <p>(earns 10 to 20 golds)</p>
+                <form action="/process_money" method = "POST">
+                    <input type="hidden" name="building" value="farm"/>
+                    <input type="submit" value="Find Gold!">
+                </form>
+            </div >
+            <div class="locations">
+                <h1>Cave</h1>
+                <p>(earns 5 to 10 golds)</p>
+                <form action="/process_money" method = "POST">
+                    <input type="hidden" name="building" value="cave"/>
+                    <input type="submit" value="Find Gold!">
+                </form>
+            </div>
+            <div class="locations">
+                <h1>House</h1>
+                <p>(earns 2 to 5 golds)</p>
+                <form action="/process_money" method = "POST">
+                    <input type="hidden" name="building" value="house"/>
+                    <input type="submit" value="Find Gold!">
+                </form>
+            </div>
+            <div class="locations">
+                <h1>Casino</h1>
+                <p>(earns -50 to 50 golds)</p>
+                <form action="/process_money" method = "POST">
+                    <input type="hidden" name="building" value="casino"/>
+                    <input type="submit" value="Find Gold!">
+                </form>
+            </div>
+            
+        </div>
+        <p>Activities:</p>
+        <div class="activity_log">
+           <ul>
+               {%for log in session['log']%}
+               {% if 'Earned' not in log %}
+                    <li class="lost">{{log}}</li>
+               {%else%}
+                    <li>{{log}}</li>
+                    {% endif %}
+               {%endfor%}
+           </ul>
+
+        </div>
+        {%if session['gold'] >=300 and session['tries']<=15%}
+        <div class="won">
+                
+                <form type="hidden" action="/reset" method = "POST">
+
+                    <h1>Congratulations you won!!!</h1>
+                    <p>Click to reset and play again!!</p>
+                    <input type="submit" value="Reset!">
+                </form>
+            </div>
+        {%elif session['tries'] >=15 and session['gold'] <= 300%}
+        <div class="loose">
+                
+                <form action="/reset" method = "POST">
+                    <p>Game Over!!</p>
+                    <p>You Lost!!</p>
+                    <input type="submit" value="Reset!">
+                </form>
+            </div>
+            {% endif %}
+
+
+    </div>
+    
+</body>
+</html>

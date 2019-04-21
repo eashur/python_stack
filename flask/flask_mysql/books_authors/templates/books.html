@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Books Home</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+</head>
+<body>
+        <a href="/authors"> All Authors </a> <br>
+    <div class="container">
+        <form action="/add_book" class="inline-form" method="POST"> 
+            <h2>Add a Book</h2>
+            <p>Title <input type="text" name="title" id="title"></p>
+            <p>Description <input type="text" name="description" id="description"></p>
+            <input type="submit" name="add_book" value="Add">
+        </form>
+        <div class="inline-form">
+            <h1>All Books</h1>
+            <table class="table table-striped table-bordered"> 
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Action</th>
+                </tr>
+            {%for book in books%}
+                <tr>
+                    <td>{{book["id"]}}</td>
+                    <td>{{book["title"]}}</td>
+                    <td><span> <a href="/books/{{book['id']}}"> <input type="submit" class="linkButton" name="show" value="Show"></span></a></td>
+                    
+                </tr>
+            {% endfor %}
+
+        </table>
+        </div>
+
+       
+    </div>
+    
+
+</body>
+</html>

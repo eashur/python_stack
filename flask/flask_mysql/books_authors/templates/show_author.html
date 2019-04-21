@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Show Authors</title>
+</head>
+<body>
+<a href="/"> All Books </a> <br>
+<a href="/authors"> All Authors </a>
+
+    <h1>{{author["first_name"]}} {{author["last_name"]}}</h1>
+    <h3>ID :{{author['id']}}</h3>
+    <h3>Notes :</h3>
+    <p>{{author['notes']}}</p>
+
+    <h4>Books:</h4>
+    <ul>
+        {%for book in author_books%}
+        <li>{{book[1].title}}</li>
+        {% endfor %}
+    </ul>
+    <form action="/add_book_to_author"  method="POST"> 
+        <input type="hidden" name ="author_id" value="{{author['id']}}">
+        <p> <select name='book_id' class="form-inline">
+                <option value="" selected disabled hidden>Choose Book</option>
+            {% for book in books %}
+                <option value="{{book['id']}}">{{book["title"]}}</option>
+                {% endfor %}
+            </select>
+        </p>
+        <input type="submit" name="add_author" value="Add">
+    </form>
+
+  
+
+</body>
+</html>

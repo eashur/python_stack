@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Edit User</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+</head>
+<body>
+    <h1>Edit User {{user[0].get("id")}}</h1>
+    <form action="/users/{{user[0].get('id')}}/update" method="POST">
+    <p>First Name: <input type="text" name="first_name" value="{{user[0].get('first_name')}}"></p>
+    <p>Last Name: <input type="text" name="last_name" value="{{user[0].get('last_name')}}"></p>
+    <p>Email: <input type="text" name="email" value="{{user[0].get('email')}}"></p>
+    <input type="submit" value="Update">
+    </form>
+
+    <a href="/users/{{user[0].get('id')}}"> Show User </a>
+</body>
+</html>

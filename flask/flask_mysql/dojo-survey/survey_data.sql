@@ -1,0 +1,1 @@
+SELECT * FROM survey_data.survey;

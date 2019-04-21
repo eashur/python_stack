@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+</head>
+<body>
+    <h1>User {{user[0].get("id")}}</h1>
+    <a href="/users">  Home </a>
+
+    <p>Full Name : {{user[0].get("first_name")}} {{user[0].get("last_name")}}</p>
+    <p>Email : {{user[0].get("email")}}</p>
+    <p>Created at : {{user[0].get("created_at")}}</p>
+    <p>Last Updated at : {{user[0].get("updated_at")}}</p>
+
+    <a href="/users/{{user[0].get('id')}}/edit">Edit |</a> 
+    <form action="/users/{{user[0].get('id')}}/destroy" method = "POST" class = "inline-form">
+        <input type="submit" class="linkButton" value = "Delete"></form>
+</body>
+</html>

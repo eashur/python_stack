@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>DOJO-SURVEY</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+
+</head>
+<body>
+    <h1>Survey</h1>
+    <div class="form-group">
+        <form action='/create' method='post'>
+            Your Name: <input type='text' class="form-inline" name='name'/><br/>
+            Dojo location:
+                <select name='location' class="form-inline">
+                    {% for i in option_list %}
+                        <option name="{{ i }}">{{ i }}</option>
+                    {% endfor %}
+                </select> <br/>
+            Favorite Language:
+                <select name='language' class="form-inline">
+                    {% for j in language_list %}
+                        <option name="{{ j }}">{{ j }}</option>
+                    {% endfor %}
+                </select> <br/>
+            Comment: <textarea rows="4" cols="50" name='comment' class="form-inline"></textarea> <br/>
+            <button type="submit" class="btn btn-primary mb-2">Submit</button>
+        </form>
+    </div>    
+
+    
+</body>
+</html>
